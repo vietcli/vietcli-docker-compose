@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+  web:
+    container_name: kzone_web
+    image: vietduong/vietcli-lemp
+    user: "${UID}:${GID}"
+    # build: .
+    ports:
+      - 6680:80 # web
+      - 6643:443 # web
+    volumes:
+      - .:/home/vietcli/files/html
+      - ~/.composer:/home/vietcli/.composer
+      - ~/.npm:/home/vietcli/.npm
+      # - ~/.nvm:/home/vietcli/.nvm
+    networks:
+        vietclidNet:
+            ipv4_address: 172.18.0.11
+networks:
+  vietclidNet:
+    name: vietclidNet
+    driver: bridge
+
